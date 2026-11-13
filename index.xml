@@ -284,7 +284,7 @@ font-style: inherit;">element_text</span>(<span class="at" style="color: #657422
 background-color: null;
 font-style: inherit;">size=</span><span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">14</span>, <span class="at" style="color: #657422;
+font-style: inherit;">12</span>, <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">face=</span><span class="st" style="color: #20794D;
 background-color: null;
@@ -533,7 +533,7 @@ font-style: inherit;">labs</span>(</span>
 background-color: null;
 font-style: inherit;">title=</span><span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"Offense vs Defense of NCAA Champions"</span>,</span>
+font-style: inherit;">"Can Great Offense Make Up For Average Defense?"</span>,</span>
 <span id="cb2-36">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">subtitle=</span><span class="st" style="color: #20794D;
@@ -559,7 +559,40 @@ background-color: null;
 font-style: inherit;">+</span></span>
 <span id="cb2-41">  <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">theme_minimal</span>()</span></code></pre></div></div>
+font-style: inherit;">theme_minimal</span>()<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb2-42">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme</span>(</span>
+<span id="cb2-43">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot.title=</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">14</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">face=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"bold"</span>),</span>
+<span id="cb2-44">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot.subtitle=</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>),</span>
+<span id="cb2-45">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">panel.grid.minor=</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_blank</span>()</span>
+<span id="cb2-46">  )</span></code></pre></div></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -1116,7 +1149,7 @@ font-style: inherit;">element_text</span>(<span class="at" style="color: #657422
 background-color: null;
 font-style: inherit;">size=</span><span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">16</span>, <span class="at" style="color: #657422;
+font-style: inherit;">14</span>, <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">face=</span><span class="st" style="color: #20794D;
 background-color: null;
