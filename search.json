@@ -1,0 +1,37 @@
+[
+  {
+    "objectID": "posts/welcome/index.html",
+    "href": "posts/welcome/index.html",
+    "title": "Welcome To My Blog",
+    "section": "",
+    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
+  },
+  {
+    "objectID": "posts/does-defense-win-championships/index.html",
+    "href": "posts/does-defense-win-championships/index.html",
+    "title": "Does Defense Win Championships?",
+    "section": "",
+    "text": "Did one of your coaches ever tell you, “Defense wins championships”? I think a lot of people have heard that saying at one point, but is it actually true? I wanted to take a look at men’s college basketball national champions over the last 10 seasons to see if defense was the difference in a team winning a national championship.\nLooking at some of the best teams in college basketball, there are some that are known for dominating on defense and some are known for their ability to score and put up numbers. This brings up the question: do teams need an elite defense to win a national championship, or can elite offense make up for just average defense?"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this blog"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Latest posts",
+    "section": "",
+    "text": "Does Defense Win Championships?\n\n\n\ncollege basketball\n\ndefense\n\nchampionships\n\n\n\n\n\n\n\n\n\n\n\nNov 13, 2026\n\n\nMitch Hobza\n\n\n\n\n\n\n\n\n\n\n\n\nPost With Code\n\n\n\nnews\n\ncode\n\nanalysis\n\n\n\n\n\n\n\n\n\n\n\nNov 2, 2026\n\n\nHarlow Malloc\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n\n\nOct 30, 2026\n\n\nTristan O’Malley\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/post-with-code/index.html",
+    "href": "posts/post-with-code/index.html",
+    "title": "Post With Code",
+    "section": "",
+    "text": "This is a post with executable code.\n\n1 + 1\n\n[1] 2"
+  }
+]
