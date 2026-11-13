@@ -28,6 +28,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -156,8 +191,224 @@ ul.task-list li input[type="checkbox"] {
 
 <p>Did one of your coaches ever tell you, “Defense wins championships”? I think a lot of people have heard that saying at one point, but is it actually true? I wanted to take a look at men’s college basketball national champions over the last 10 seasons to see if defense was the difference in a team winning a national championship.</p>
 <p>Looking at some of the best teams in college basketball, there are some that are known for dominating on defense and some are known for their ability to score and put up numbers. This brings up the question: do teams need an elite defense to win a national championship, or can elite offense make up for just average defense?</p>
-<pre><code></code></pre>
-<pre><code></code></pre>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>kenpom <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"kenpom_last_10_years.csv"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>champions <span class="ot">&lt;-</span> kenpom <span class="sc">|&gt;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    (Season <span class="sc">==</span> <span class="st">"2025-26"</span> <span class="sc">&amp;</span> Team <span class="sc">==</span> <span class="st">"Michigan 1"</span>) <span class="sc">|</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>      (Season <span class="sc">==</span> <span class="st">"2024-25"</span> <span class="sc">&amp;</span> Team <span class="sc">==</span> <span class="st">"Florida 1"</span>) <span class="sc">|</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>      (Season <span class="sc">==</span> <span class="st">"2023-24"</span> <span class="sc">&amp;</span> Team <span class="sc">==</span> <span class="st">"Connecticut 1"</span>) <span class="sc">|</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>      (Season <span class="sc">==</span> <span class="st">"2022-23"</span> <span class="sc">&amp;</span> Team <span class="sc">==</span> <span class="st">"Connecticut 4"</span>) <span class="sc">|</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>      (Season <span class="sc">==</span> <span class="st">"2021-22"</span> <span class="sc">&amp;</span> Team <span class="sc">==</span> <span class="st">"Kansas 1"</span>) <span class="sc">|</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>      (Season <span class="sc">==</span> <span class="st">"2020-21"</span> <span class="sc">&amp;</span> Team <span class="sc">==</span> <span class="st">"Baylor 1"</span>) <span class="sc">|</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>      (Season <span class="sc">==</span> <span class="st">"2018-19"</span> <span class="sc">&amp;</span> Team <span class="sc">==</span> <span class="st">"Virginia 1"</span>) <span class="sc">|</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>      (Season <span class="sc">==</span> <span class="st">"2017-18"</span> <span class="sc">&amp;</span> Team <span class="sc">==</span> <span class="st">"Villanova 1"</span>) <span class="sc">|</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>      (Season <span class="sc">==</span> <span class="st">"2016-17"</span> <span class="sc">&amp;</span> Team <span class="sc">==</span> <span class="st">"North Carolina 1"</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>top10 <span class="ot">&lt;-</span> champions <span class="sc">|&gt;</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Defensive_Rank <span class="sc">&lt;=</span> <span class="dv">10</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">data=</span>champions,</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>      <span class="at">x=</span><span class="fu">reorder</span>(Season, Defensive_Rank),</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>      <span class="at">weight=</span>Defensive_Rank</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill=</span><span class="st">"lightgrey"</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  )<span class="sc">+</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">data=</span>top10,</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>      <span class="at">x=</span><span class="fu">reorder</span>(Season, Defensive_Rank),</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>      <span class="at">weight=</span>Defensive_Rank</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill=</span><span class="st">"blue"</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>  )<span class="sc">+</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()<span class="sc">+</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">title=</span><span class="st">"Do NCAA Men's Basketball Champions Have Top-10 Defenses?"</span>,</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle=</span><span class="st">"Blue = Top 10 Defense - Gray = Outside Top 10"</span>,</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption=</span><span class="st">"Source: KenPom | by Mitch Hobza"</span>,</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">x=</span><span class="st">"Season"</span>,</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">y=</span><span class="st">"National Defensive Rank"</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>  )<span class="sc">+</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()<span class="sc">+</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">14</span>, <span class="at">face=</span><span class="st">"bold"</span>),</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.subtitle=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">10</span>),</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.minor=</span><span class="fu">element_blank</span>()</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The results show that only five out of the last nine NCAA men’s basketball national champions had a top 10-ranked defense, while four finished outside the top 10. Kansas in 2021-2022 finished 17th nationally in their defensive rank, and Baylor in 2020-2021 finished 22nd nationally but still hung a banner that season. Kansas and Baylor were still very good defensive teams that season, but nobody would classify them as elite defensive teams those years. This shows that having an elite defensive team might not be as important as some people think. That makes people think: can great offense make up for average defense?</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>kenpom <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"kenpom_last_10_years.csv"</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>champions <span class="ot">&lt;-</span> kenpom <span class="sc">|&gt;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    (Season <span class="sc">==</span> <span class="st">"2025-26"</span> <span class="sc">&amp;</span> Team <span class="sc">==</span> <span class="st">"Michigan 1"</span>) <span class="sc">|</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>      (Season <span class="sc">==</span> <span class="st">"2024-25"</span> <span class="sc">&amp;</span> Team <span class="sc">==</span> <span class="st">"Florida 1"</span>) <span class="sc">|</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>      (Season <span class="sc">==</span> <span class="st">"2023-24"</span> <span class="sc">&amp;</span> Team <span class="sc">==</span> <span class="st">"Connecticut 1"</span>) <span class="sc">|</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>      (Season <span class="sc">==</span> <span class="st">"2022-23"</span> <span class="sc">&amp;</span> Team <span class="sc">==</span> <span class="st">"Connecticut 4"</span>) <span class="sc">|</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>      (Season <span class="sc">==</span> <span class="st">"2021-22"</span> <span class="sc">&amp;</span> Team <span class="sc">==</span> <span class="st">"Kansas 1"</span>) <span class="sc">|</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>      (Season <span class="sc">==</span> <span class="st">"2020-21"</span> <span class="sc">&amp;</span> Team <span class="sc">==</span> <span class="st">"Baylor 1"</span>) <span class="sc">|</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>      (Season <span class="sc">==</span> <span class="st">"2018-19"</span> <span class="sc">&amp;</span> Team <span class="sc">==</span> <span class="st">"Virginia 1"</span>) <span class="sc">|</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>      (Season <span class="sc">==</span> <span class="st">"2017-18"</span> <span class="sc">&amp;</span> Team <span class="sc">==</span> <span class="st">"Villanova 1"</span>) <span class="sc">|</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>      (Season <span class="sc">==</span> <span class="st">"2016-17"</span> <span class="sc">&amp;</span> Team <span class="sc">==</span> <span class="st">"North Carolina 1"</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">data=</span>kenpom,</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x=</span>Adjusted_Offensive_Rating, <span class="at">y=</span>Adjusted_Defensive_Rating),</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">color=</span><span class="st">"grey"</span>,</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha=</span>.<span class="dv">6</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">data=</span>champions,</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x=</span>Adjusted_Offensive_Rating, <span class="at">y=</span>Adjusted_Defensive_Rating),</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">color=</span><span class="st">"red"</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">data=</span>champions,</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x=</span>Adjusted_Offensive_Rating, <span class="at">y=</span>Adjusted_Defensive_Rating, <span class="at">label=</span>Season)</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">title=</span><span class="st">"Offense vs Defense of NCAA Champions"</span>,</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle=</span><span class="st">"Champions compared to other D1 teams"</span>,</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">x=</span><span class="st">"Adjusted Offensive Rating"</span>,</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">y=</span><span class="st">"Adjusted Defensive Rating"</span>,</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption=</span><span class="st">"Source: KenPom | by Mitch Hobza"</span>,</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Most coaches say defense is considered one of the most important parts of winning, but can great offense make up for average defense? Over the last 10 years, national champions have consistently had elite offenses while their defensive ratings have varied. Nine out of the nine of the national champions showed all had top 10 offenses. Only five out of the nine had top 10 defenses, but they still hung a banner. This doesn’t mean your defense can be below average compared to the rest of Division 1 basketball, but the results show that elite defense alone isn’t what makes a championship team a championship team. You have to be able to put the ball in the rim consistently; you can’t solely rely on defense to win games. The next question is whether defense is what separates a Final Four team from a national championship team.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>kenpom <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"kenpom_last_10_years.csv"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>finalfour <span class="ot">&lt;-</span> kenpom <span class="sc">|&gt;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    (Season <span class="sc">==</span> <span class="st">"2025-26"</span> <span class="sc">&amp;</span> Team <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Michigan 1"</span>, <span class="st">"Arizona 1"</span>, <span class="st">"Connecticut 2"</span>, <span class="st">"Illinois 3"</span>)) <span class="sc">|</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>      (Season <span class="sc">==</span> <span class="st">"2024-25"</span> <span class="sc">&amp;</span> Team <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Florida 1"</span>, <span class="st">"Auburn 1"</span>, <span class="st">"Duke 1"</span>, <span class="st">"Houston 1"</span>)) <span class="sc">|</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>      (Season <span class="sc">==</span> <span class="st">"2023-24"</span> <span class="sc">&amp;</span> Team <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Connecticut 1"</span>, <span class="st">"Purdue 1"</span>, <span class="st">"Alabama 4"</span>, <span class="st">"N.C. State 11"</span>)) <span class="sc">|</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>      (Season <span class="sc">==</span> <span class="st">"2022-23"</span> <span class="sc">&amp;</span> Team <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Connecticut 4"</span>, <span class="st">"San Diego St. 5"</span>, <span class="st">"Miami FL 5"</span>, <span class="st">"Florida Atlantic 9"</span>)) <span class="sc">|</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>      (Season <span class="sc">==</span> <span class="st">"2021-22"</span> <span class="sc">&amp;</span> Team <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Kansas 1"</span>, <span class="st">"North Carolina 8"</span>, <span class="st">"Duke 2"</span>, <span class="st">"Villanova 2"</span>)) <span class="sc">|</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>      (Season <span class="sc">==</span> <span class="st">"2020-21"</span> <span class="sc">&amp;</span> Team <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Baylor 1"</span>, <span class="st">"Gonzaga 1"</span>, <span class="st">"Houston 2"</span>, <span class="st">"UCLA 11"</span>)) <span class="sc">|</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>      (Season <span class="sc">==</span> <span class="st">"2018-19"</span> <span class="sc">&amp;</span> Team <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Virginia 1"</span>, <span class="st">"Texas Tech 3"</span>, <span class="st">"Michigan St. 2"</span>, <span class="st">"Auburn 5"</span>)) <span class="sc">|</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>      (Season <span class="sc">==</span> <span class="st">"2017-18"</span> <span class="sc">&amp;</span> Team <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Villanova 1"</span>, <span class="st">"Michigan 3"</span>, <span class="st">"Kansas 1"</span>, <span class="st">"Loyola Chicago 11"</span>)) <span class="sc">|</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>      (Season <span class="sc">==</span> <span class="st">"2016-17"</span> <span class="sc">&amp;</span> Team <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"North Carolina 1"</span>, <span class="st">"Gonzaga 1"</span>, <span class="st">"Oregon 3"</span>, <span class="st">"South Carolina 7"</span>))</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>finalfour <span class="ot">&lt;-</span> finalfour <span class="sc">|&gt;</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">Status=</span><span class="fu">case_when</span>(</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>      (Season <span class="sc">==</span> <span class="st">"2025-26"</span> <span class="sc">&amp;</span> Team <span class="sc">==</span> <span class="st">"Michigan 1"</span>) <span class="sc">|</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>        (Season <span class="sc">==</span> <span class="st">"2024-25"</span> <span class="sc">&amp;</span> Team <span class="sc">==</span> <span class="st">"Florida 1"</span>) <span class="sc">|</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>        (Season <span class="sc">==</span> <span class="st">"2023-24"</span> <span class="sc">&amp;</span> Team <span class="sc">==</span> <span class="st">"Connecticut 1"</span>) <span class="sc">|</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>        (Season <span class="sc">==</span> <span class="st">"2022-23"</span> <span class="sc">&amp;</span> Team <span class="sc">==</span> <span class="st">"Connecticut 4"</span>) <span class="sc">|</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>        (Season <span class="sc">==</span> <span class="st">"2021-22"</span> <span class="sc">&amp;</span> Team <span class="sc">==</span> <span class="st">"Kansas 1"</span>) <span class="sc">|</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>        (Season <span class="sc">==</span> <span class="st">"2020-21"</span> <span class="sc">&amp;</span> Team <span class="sc">==</span> <span class="st">"Baylor 1"</span>) <span class="sc">|</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>        (Season <span class="sc">==</span> <span class="st">"2018-19"</span> <span class="sc">&amp;</span> Team <span class="sc">==</span> <span class="st">"Virginia 1"</span>) <span class="sc">|</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>        (Season <span class="sc">==</span> <span class="st">"2017-18"</span> <span class="sc">&amp;</span> Team <span class="sc">==</span> <span class="st">"Villanova 1"</span>) <span class="sc">|</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>        (Season <span class="sc">==</span> <span class="st">"2016-17"</span> <span class="sc">&amp;</span> Team <span class="sc">==</span> <span class="st">"North Carolina 1"</span>) <span class="sc">~</span> <span class="st">"Champion"</span>,</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Other"</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>defense <span class="ot">&lt;-</span> finalfour <span class="sc">|&gt;</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Season, Status) <span class="sc">|&gt;</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">Avg_Defense=</span><span class="fu">mean</span>(Adjusted_Defensive_Rating)</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from=</span>Status,</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from=</span>Avg_Defense</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">data=</span>defense,</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>      <span class="at">y=</span>Season, <span class="at">yend=</span>Season,</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>      <span class="at">x=</span>Champion, <span class="at">xend=</span>Other</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">color=</span><span class="st">"grey"</span>,</span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth=</span><span class="fl">1.5</span></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>    <span class="at">data=</span>defense,</span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>      <span class="at">y=</span>Season,</span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>      <span class="at">x=</span>Champion,</span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>      <span class="at">color=</span><span class="st">"Champion"</span></span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>    <span class="at">size=</span><span class="dv">3</span></span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>    <span class="at">data=</span>defense,</span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>      <span class="at">y=</span>Season,</span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a>      <span class="at">x=</span>Other,</span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>      <span class="at">color=</span><span class="st">"Other Final Four Teams"</span></span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>    <span class="at">size=</span><span class="dv">3</span></span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(</span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a>    <span class="st">""</span>,</span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a>    <span class="at">values=</span><span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>)</span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a>    <span class="at">title=</span><span class="st">"Is Defense The Difference In The Final Four?"</span>,</span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle=</span><span class="st">"Champion vs. average of the other three Final Four teams in each season"</span>,</span>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a>    <span class="at">x=</span><span class="st">"Adjusted Defensive Rating"</span>,</span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a>    <span class="at">y=</span><span class="st">"Season"</span>,</span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption=</span><span class="st">"Source: KenPom | by Mitch Hobza"</span></span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">16</span>, <span class="at">face=</span><span class="st">"bold"</span>),</span>
+<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.subtitle=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">10</span>),</span>
+<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.minor=</span><span class="fu">element_blank</span>()</span>
+<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Making the Final Four makes you an elite team that made a run in the NCAA tournament, but what separates the team that wins it all from the other three? Defense appears to play a very important role. In seven of the nine seasons, the national championship team had a better defensive rating than the average of the other three Final Four teams. Some seasons it was very close, others not so much.</p>
+<p>This supports the idea that defense can help separate Final Four teams from national championship teams, but it isn’t always a deciding factor. Two champions actually were worse defensively than the average of the other final four teams. Looking at everything, defense is clearly very important to winning a national championship, but saying “defense wins championships” doesn’t tell the whole story. You need great offense to be a great team, but elite defense could be the difference between losing in the Final Four and getting fitted for a championship ring on Monday.</p>
 
 
 
